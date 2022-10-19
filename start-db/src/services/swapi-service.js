@@ -51,7 +51,7 @@ export default class SwapiService {
       id: this._extractId(planet),
       name: planet.name,
       population: planet.population,
-      rotationPeriod: planet.rotationPeriod,
+      rotationPeriod: planet.rotation_period, 
       diameter: planet.diameter
     }
   }
@@ -81,8 +81,12 @@ export default class SwapiService {
   }
 }
 
+const swapi = new SwapiService();
+
+swapi.getPlanet(8).then(res => console.log(res));
+
 // const swapi = new SwapiService();
-console.log('43');
+// console.log('43');
 
 // swapi.getAllPeople().then(people => people.forEach(p=> console.log(p.name)))
 // swapi.getPerson(3).then(res => console.log(res.name))
