@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import SwapiService from '../../services/swapi-service'
-import Spinner from '../spinner'
 
 import './item-list.css';
+import SwapiService from "../../services/swapi-service";
+import Spinner from "../spinner/spinner";
 
 export default class ItemList extends Component {
 
@@ -10,14 +10,15 @@ export default class ItemList extends Component {
 
   state = {
     peopleList: null
-  }
+  };
 
   componentDidMount() {
-    this.swapiService.getAllPeople().then((peopleList)=>{
-      this.setState({
-        peopleList
-      })
-    })
+    this.swapiService.getAllPeople()
+      .then((peopleList) => {
+        this.setState({
+          peopleList
+        });
+      });
   }
 
   renderItems(arr) {
@@ -25,18 +26,19 @@ export default class ItemList extends Component {
       return (
         <li className="list-group-item"
             key={id}
-            onClick={()=>this.props.onItemSelected(id)}>
+            onClick={() => this.props.onItemSelected(id)}>
           {name}
         </li>
-      )
-    })
+      );
+    });
   }
 
   render() {
+
     const { peopleList } = this.state;
 
     if (!peopleList) {
-      return < Spinner/>
+      return <Spinner />;
     }
 
     const items = this.renderItems(peopleList);
